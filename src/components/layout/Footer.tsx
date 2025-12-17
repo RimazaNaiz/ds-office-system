@@ -1,49 +1,81 @@
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
+    // Footer Background: Yale Blue (#284b63)
+    <footer className="text-white" style={{ backgroundColor: '#284b63' }}>
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          {/* Column 1: Brand Info */}
           <div className="col-span-1">
-            <h3 className="text-xl font-bold">DS Office System</h3>
-            <p className="mt-4 text-gray-300 text-sm">
+            {/* Logo/Title: Pure White */}
+            <h3 className="text-xl font-bold text-white">DS Office System</h3>
+            {/* Description: Alabaster Grey (#d9d9d9) */}
+            <p className="mt-4 text-[#d9d9d9] text-sm">
               Transforming DS offices across Sri Lanka with digital efficiency and citizen-centric services.
             </p>
           </div>
           
+          {/* Column 2: Product Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Product</h4>
+            {/* Heading: Pure White */}
+            <h4 className="text-lg font-semibold mb-4 text-white">Product</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/features" className="text-gray-300 hover:text-white">Features</Link></li>
-              <li><Link href="/success" className="text-gray-300 hover:text-white">Success Stories</Link></li>
-              <li><Link href="/pricing" className="text-gray-300 hover:text-white">Pricing</Link></li>
-              <li><Link href="/demo" className="text-gray-300 hover:text-white">Demo</Link></li>
+              {['Features', 'Success Stories', 'Pricing', 'Demo'].map((label) => (
+                <li key={label}>
+                  <Link 
+                    href={`/${label.toLowerCase().replace(' ', '-')}`} 
+                    className="text-[#d9d9d9] hover:text-white transition-colors duration-200"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
+          {/* Column 3: Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
+            {/* Heading: Pure White */}
+            <h4 className="text-lg font-semibold mb-4 text-white">Company</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/about" className="text-gray-300 hover:text-white">About Us</Link></li>
-              <li><Link href="/blog" className="text-gray-300 hover:text-white">Blog</Link></li>
-              <li><Link href="/careers" className="text-gray-300 hover:text-white">Careers</Link></li>
-              <li><Link href="/contact" className="text-gray-300 hover:text-white">Contact</Link></li>
+              {['About Us', 'Blog', 'Careers', 'Contact'].map((label) => (
+                <li key={label}>
+                  <Link 
+                    href={`/${label.toLowerCase().replace(' ', '-')}`} 
+                    className="text-[#d9d9d9] hover:text-white transition-colors duration-200"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
+          {/* Column 4: Legal Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Legal</h4>
+            {/* Heading: Pure White */}
+            <h4 className="text-lg font-semibold mb-4 text-white">Legal</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/privacy" className="text-gray-300 hover:text-white">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="text-gray-300 hover:text-white">Terms of Service</Link></li>
-              <li><Link href="/security" className="text-gray-300 hover:text-white">Security</Link></li>
-              <li><Link href="/compliance" className="text-gray-300 hover:text-white">Compliance</Link></li>
+              {['Privacy Policy', 'Terms of Service', 'Security', 'Compliance'].map((label) => (
+                <li key={label}>
+                  <Link 
+                    href={`/${label.toLowerCase().replace(' ', '-')}`} 
+                    className="text-[#d9d9d9] hover:text-white transition-colors duration-200"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         
-        <div className="mt-8 pt-8 border-t border-gray-700 text-sm text-gray-300">
+        {/* Copyright Section */}
+        {/* Divider Line: Stormy Teal (#3c6e71) */}
+        <div className="mt-8 pt-8 border-t border-[#3c6e71] text-sm text-[#d9d9d9]">
           <p>© 2025 DS Office Management System. A product of Inzeedo. All rights reserved.</p>
         </div>
       </div>

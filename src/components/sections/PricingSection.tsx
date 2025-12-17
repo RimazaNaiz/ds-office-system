@@ -1,167 +1,184 @@
 'use client';
 
 export default function PricingSection() {
+  const YALE = "#284b63";
+  const TEAL = "#3c6e71";
+  const GRAPHITE = "#353535";
+  const GREY = "#d9d9d9";
+
   const plans = [
     {
       name: "Basic",
       price: "$49",
       period: "/ month",
-      buttonText: "Get Started",
+      highlight: false,
       features: [
         "Document Management",
-        "Basic Scheduling", 
+        "Basic Scheduling",
         "Standard Support",
-        "Core citizen Management",
-        "Advance Analytics",
-        "Custom Workflows"
-      ]
+        "Core Citizen Management",
+        "Advanced Analytics",
+        "Custom Workflows (Limited)",
+      ],
     },
     {
-      name: "Professional", 
+      name: "Professional",
       price: "$99",
-      period: "/ month", 
-      buttonText: "Get Started",
+      period: "/ month",
+      highlight: true,
       features: [
         "All Basic features",
-        "SMS notifications",
-        "Standard Support",
-        "Core citizen Management",
-        "Advance Analytics",
-        "Custom Workflows", 
-        "Staff training"
-      ]
+        "SMS Notifications",
+        "Priority Support",
+        "Full Citizen Management",
+        "Advanced Analytics",
+        "Custom Workflows (Full)",
+        "Staff Training",
+      ],
     },
     {
       name: "Enterprise",
       price: "Custom",
       period: "",
-      buttonText: "Get Started",
+      highlight: false,
       features: [
         "All Professional features",
-        "Multi-office management", 
-        "Advanced security",
-        "Core citizen Management",
-        "Advance Analytics",
-        "Custom development",
-        "AI ChatBot"
-      ]
-    }
+        "Multi-office Management",
+        "Advanced Security & SSO",
+        "Dedicated Account Manager",
+        "Custom Dashboards",
+        "Custom Development",
+        "AI ChatBot Integration",
+      ],
+    },
   ];
 
-  const handleGetStarted = (planName: string) => {
-    console.log(`Selected ${planName} plan`);
-    // Scroll to contact section or open signup form
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      alert(`Thank you for your interest in the ${planName} plan! Please contact us.`);
-    }
-  };
-
   return (
-    <section id="pricing" className="py-20 bg-gray-50">
+    <section id="pricing" className="py-24" style={{ backgroundColor: GREY }}>
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-10">
-        {/* Header */}
+
+        {/* HEADER */}
         <div className="text-center mb-16">
-          <h1 
-            className="text-3xl md:text-4xl font-bold mb-6"
-            style={{ color: '#2F2F77' }} // Your dark blue
+          <h2
+            className="text-3xl md:text-4xl font-extrabold mb-4"
+            style={{ color: YALE }}
           >
             Transparent Pricing Options
-          </h1>
-          <p className="text-lg text-gray-600">
-            Choose the plan that works best for your DS office
+          </h2>
+          <p className="text-lg" style={{ color: GRAPHITE }}>
+            Choose the plan that fits your DS office needs
           </p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
-            <div 
-              key={index} 
-              className="bg-white rounded-2xl shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+        {/* PRICING GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {plans.map((plan, i) => (
+            <div
+              key={i}
+              className="rounded-2xl bg-white border p-8 shadow-sm"
+              style={{
+                borderColor: plan.highlight ? TEAL : GREY,
+                boxShadow: plan.highlight
+                  ? "0 0 0 4px rgba(60,110,113,0.15)"
+                  : "0 4px 15px rgba(0,0,0,0.05)",
+              }}
             >
-            
-
-              {/* Content */}
-              <div className="relative bg-white rounded-2xl">
-                {/* Plan Header */}
-                <div className="p-8 border-b border-gray-200">
-                  <h3 
-                    className="text-2xl font-bold mb-4"
-                    style={{ color: '#2F2F77' }} // Your dark blue
-                  >
-                    {plan.name}
-                  </h3>
-                  <div className="flex items-baseline mb-6">
-                    <span 
-                      className="text-4xl font-bold"
-                      style={{ color: '#2F2F77' }} // Your dark blue
-                    >
-                      {plan.price}
-                    </span>
-                    <span className="text-gray-600 ml-2">{plan.period}</span>
-                  </div>
-                  <button 
-                    onClick={() => handleGetStarted(plan.name)}
-                    className="w-full py-3 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 transform hover:shadow-lg active:scale-95"
-                    style={{
-                      backgroundColor: '#FF8F00', // Your orange
-                      border: '2px solid #FF8F00'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = '#E67E00';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#FF8F00';
-                    }}
-                  >
-                    {plan.buttonText}
-                  </button>
+              {/* BADGE */}
+              {plan.highlight && (
+                <div
+                  className="inline-block text-xs px-3 py-1 rounded-md mb-4"
+                  style={{ backgroundColor: TEAL, color: "white" }}
+                >
+                  Recommended
                 </div>
+              )}
 
-                {/* Features List */}
-                <div className="p-8">
-                  <ul className="space-y-4">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li 
-                        key={featureIndex} 
-                        className="text-gray-700 flex items-start" // Changed from gray-600 to gray-700 for better contrast
-                      >
-                        <svg 
-                          className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* TITLE */}
+              <h3
+                className="text-2xl font-bold mb-4"
+                style={{ color: YALE }}
+              >
+                {plan.name}
+              </h3>
+
+              {/* PRICE */}
+              <div className="flex items-baseline mb-6">
+                <span
+                  className="text-4xl font-bold"
+                  style={{ color: YALE }}
+                >
+                  {plan.price}
+                </span>
+                <span className="ml-2" style={{ color: GRAPHITE }}>
+                  {plan.period}
+                </span>
               </div>
+
+              {/* CTA BUTTON */}
+              <button
+                onClick={() =>
+                  document.getElementById("contact")?.scrollIntoView({
+                    behavior: "smooth",
+                  })
+                }
+                className="w-full py-3 text-white font-semibold rounded-lg"
+                style={{
+                  backgroundColor: plan.highlight ? TEAL : YALE,
+                }}
+              >
+                {plan.name === "Enterprise" ? "Contact Sales" : "Get Started"}
+              </button>
+
+              {/* FEATURES */}
+              <ul className="mt-8 space-y-3">
+                {plan.features.map((feat, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-start"
+                    style={{ color: GRAPHITE }}
+                  >
+                    <svg
+                      className="w-5 h-5 mr-3 mt-1 flex-shrink-0"
+                      fill="none"
+                      stroke={TEAL}
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-        {/* Additional Info */}
+        {/* FOOTER TEXT */}
         <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">
-            All plans include a 30-day money-back guarantee
+          <p style={{ color: GRAPHITE }}>
+            All plans include setup assistance and a 30-day performance review.
           </p>
-          <p className="text-gray-500 text-sm">
-            Need a custom solution?{" "}
-            <button 
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="text-[#FF8F00] hover:text-[#E67E00] font-semibold transition-colors duration-200"
+          <p className="text-sm mt-2" style={{ color: "#555" }}>
+            Need a custom workflow?{" "}
+            <button
+              onClick={() =>
+                document.getElementById("contact")?.scrollIntoView({
+                  behavior: "smooth",
+                })
+              }
+              className="font-semibold"
+              style={{ color: YALE }}
             >
-              Contact us for enterprise pricing
+              Contact our team →
             </button>
           </p>
         </div>
+
       </div>
     </section>
   );

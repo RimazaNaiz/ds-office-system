@@ -1,68 +1,119 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 export default function ImplementationSection() {
   const steps = [
     {
       number: "1",
       title: "Assessment & Planning",
-      description: "We analyze your current workflows and design a customized implementation plan tailored to your DS office needs."
+      description:
+        "We evaluate your current workflows and create a clear digital transformation roadmap tailored for your DS office.",
     },
     {
       number: "2",
-      title: "System Configuration", 
-      description: "Our team sets up the system according to your specific DS office requirements and service workflows."
+      title: "System Configuration",
+      description:
+        "All modules, permissions, and workflows are configured according to your operational structure and service processes.",
     },
     {
       number: "3",
       title: "Staff Training",
-      description: "Comprehensive training ensures your team is confident using the new system with hands-on practice sessions."
+      description:
+        "Your staff receives guided training with real-world scenarios to ensure smooth adoption.",
     },
     {
       number: "4",
       title: "Go Live & Support",
-      description: "We launch your system and provide ongoing support to ensure smooth operations and continuous improvement."
-    }
+      description:
+        "We activate your system and continue to support performance, troubleshooting, and improvements.",
+    },
   ];
 
+  const YALE = "#284b63";
+  const TEAL = "#3c6e71";
+  const GRAPHITE = "#353535";
+  const GREY = "#d9d9d9";
+
   return (
-    <section id="implementation" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#2F2F77' }}> {/* Changed from text-gray-900 to #2F2F77 */}
-            Simple Implementation Process
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We guide you through every step of digital transformation
+    <section id="implementation" className="py-24 bg-white">
+      <div className="max-w-4xl mx-auto px-6">
+
+        {/* SECTION HEADER */}
+        <div className="text-center mb-16">
+          <h2
+            className="text-3xl md:text-4xl font-extrabold mb-4"
+            style={{ color: YALE }}
+          >
+            Implementation Process
+          </h2>
+          <p className="text-lg" style={{ color: GRAPHITE }}>
+            A structured rollout designed for simplicity and clarity
           </p>
         </div>
 
-        {/* Spacious Horizontal Timeline */}
+        {/* TIMELINE WRAPPER */}
         <div className="relative">
-          {/* Complete Horizontal Connecting Line */}
-          <div className="absolute left-8 right-8 top-8 h-0.5 bg-[#2F2F77]/30 hidden md:block z-0"></div>
 
-          {/* Steps in Row - More Spacious */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative z-10">
+          {/* VERTICAL TIMELINE LINE */}
+          <div
+            className="absolute left-8 top-0 bottom-0 w-1 rounded-full"
+            style={{ backgroundColor: TEAL + "40" }}
+          />
+
+          {/* STEPS */}
+          <div className="space-y-20">
             {steps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center text-center">
-                {/* Number Circle - Larger with more spacing */}
-                <div className="w-16 h-16 bg-[#2F2F77] text-white rounded-full flex items-center justify-center text-xl font-bold border-4 border-white shadow-lg mb-8"> {/* Removed group-hover:scale-110 */}
+              <motion.div
+                key={index}
+                className="relative pl-20"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-120px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+
+                {/* NUMBER BADGE */}
+                <div
+                  className="
+                    absolute left-0 top-0 
+                    w-14 h-14 rounded-full flex items-center justify-center 
+                    text-xl font-bold shadow-lg border-4 border-white
+                  "
+                  style={{
+                    backgroundColor: YALE,
+                    color: "white",
+                  }}
+                >
                   {step.number}
                 </div>
 
-                {/* Content with more spacing */}
-                <div className="w-full px-2">
-                  <h3 className="text-xl font-semibold mb-4" style={{ color: '#2F2F77' }}> {/* Changed from text-gray-900 to #2F2F77 and removed group-hover effect */}
+                {/* CONTENT CARD */}
+                <div
+                  className="
+                    p-6 rounded-xl bg-white
+                    shadow-[0_6px_20px_rgba(0,0,0,0.06)]
+                    border
+                    transition-all duration-300
+                  "
+                  style={{ borderColor: GREY }}
+                >
+                  <h3
+                    className="text-xl font-bold mb-3"
+                    style={{ color: YALE }}
+                  >
                     {step.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+
+                  <p className="leading-relaxed" style={{ color: GRAPHITE }}>
                     {step.description}
                   </p>
                 </div>
-              </div>
+
+              </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
